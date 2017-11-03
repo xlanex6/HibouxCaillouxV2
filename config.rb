@@ -1,3 +1,6 @@
+# Uses .env in the root of the project
+activate :dotenv
+
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
 end
@@ -20,3 +23,13 @@ activate :deploy do |deploy|
   deploy.build_before = true
   deploy.deploy_method = :git
 end
+
+activate :contentful do |f|
+  f.space         = { contentful: 'depeq58b1rph'}
+  f.access_token  = ENV['CONTETNFUL_API_KEY']
+  f.cda_query     = { content_type: 'sortiesRaquettes', include: 1 }
+  f.content_types = { sortiesRaquettes: 'sortiesRaquettes'}
+end
+
+
+
